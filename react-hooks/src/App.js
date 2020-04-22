@@ -3,6 +3,7 @@ import { useInput } from "./hooks/useInput";
 import { useTabs } from "./hooks/useTabs";
 import { useTitle } from "./hooks/useTitle";
 import { useClick } from "./hooks/useClick";
+import { useHover } from "./hooks/useHover";
 import "./App.css";
 
 const content = [
@@ -27,9 +28,13 @@ const App = () => {
   const sayHello = () => console.log("say hello");
   const title = useClick(sayHello);
 
+  const hoverHello = () => console.log("hover hello");
+  const hover = useHover(hoverHello);
+
   return (
     <div className="App">
       <h1 ref={title}>Hello</h1>
+      <h1 ref={hover}>Hover</h1>
       <input placeholder="Name" {...name} />
       {content.map((section, index) => (
         <button onClick={() => changeItem(index)} key={index}>
