@@ -5,6 +5,7 @@ import { useTitle } from "./hooks/useTitle";
 import { useClick } from "./hooks/useClick";
 import { useHover } from "./hooks/useHover";
 import { useConfirm } from "./hooks/useConfirm";
+import { usePreventLeave } from "./hooks/usePreventLeave";
 import "./App.css";
 
 const content = [
@@ -36,6 +37,8 @@ const App = () => {
   const abort = () => console.log("Aborted");
   const confirmDelete = useConfirm("Are you sure", deleteWorld, abort);
 
+  const { enablePrevent, disablePrevent } = usePreventLeave();
+
   return (
     <div className="App">
       <h1 ref={title}>Hello</h1>
@@ -48,6 +51,10 @@ const App = () => {
       ))}
       <div>{currentItem.content}</div>
       <button onClick={confirmDelete}>Delete the world</button>
+      <div>
+        <button onClick={enablePrevent}>Protect</button>
+        <button onClick={disablePrevent}>Unprotect</button>
+      </div>
     </div>
   );
 };
