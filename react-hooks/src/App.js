@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useInput } from "./hooks/useInput";
 import { useTabs } from "./hooks/useTabs";
 import "./App.css";
@@ -18,6 +18,9 @@ const App = () => {
   const maxLen = (value) => value.length <= 10;
   const name = useInput("Mr.", maxLen);
   const { currentItem, changeItem } = useTabs(0, content);
+
+  const sayHello = () => console.log("hello");
+  useEffect(sayHello, [currentItem]);
 
   return (
     <div className="App">
