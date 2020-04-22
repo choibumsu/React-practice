@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useInput } from "./hooks/useInput";
 import { useTabs } from "./hooks/useTabs";
+import { useTitle } from "./hooks/useTitle";
 import "./App.css";
 
 const content = [
@@ -19,8 +20,8 @@ const App = () => {
   const name = useInput("Mr.", maxLen);
   const { currentItem, changeItem } = useTabs(0, content);
 
-  const sayHello = () => console.log("hello");
-  useEffect(sayHello, [currentItem]);
+  const titleUpdater = useTitle("Loading...");
+  setTimeout(() => titleUpdater("Home"), 2000);
 
   return (
     <div className="App">
