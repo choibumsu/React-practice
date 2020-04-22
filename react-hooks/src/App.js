@@ -4,6 +4,7 @@ import { useTabs } from "./hooks/useTabs";
 import { useTitle } from "./hooks/useTitle";
 import { useClick } from "./hooks/useClick";
 import { useHover } from "./hooks/useHover";
+import { useConfirm } from "./hooks/useConfirm";
 import "./App.css";
 
 const content = [
@@ -31,6 +32,10 @@ const App = () => {
   const hoverHello = () => console.log("hover hello");
   const hover = useHover(hoverHello);
 
+  const deleteWorld = () => console.log("Deleting the world");
+  const abort = () => console.log("Aborted");
+  const confirmDelete = useConfirm("Are you sure", deleteWorld, abort);
+
   return (
     <div className="App">
       <h1 ref={title}>Hello</h1>
@@ -42,6 +47,7 @@ const App = () => {
         </button>
       ))}
       <div>{currentItem.content}</div>
+      <button onClick={confirmDelete}>Delete the world</button>
     </div>
   );
 };
