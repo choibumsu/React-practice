@@ -6,6 +6,7 @@ import { useClick } from "./hooks/useClick";
 import { useHover } from "./hooks/useHover";
 import { useConfirm } from "./hooks/useConfirm";
 import { usePreventLeave } from "./hooks/usePreventLeave";
+import { useBeforeLeave } from "./hooks/useBeforeLeave";
 import "./App.css";
 
 const content = [
@@ -38,6 +39,9 @@ const App = () => {
   const confirmDelete = useConfirm("Are you sure", deleteWorld, abort);
 
   const { enablePrevent, disablePrevent } = usePreventLeave();
+
+  const begForLife = () => console.log("Please don't leave");
+  useBeforeLeave(begForLife);
 
   return (
     <div className="App">
