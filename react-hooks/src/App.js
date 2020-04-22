@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useInput } from "./hooks/useInput";
 import { useTabs } from "./hooks/useTabs";
 import { useTitle } from "./hooks/useTitle";
+import { useClick } from "./hooks/useClick";
 import "./App.css";
 
 const content = [
@@ -23,9 +24,12 @@ const App = () => {
   const titleUpdater = useTitle("Loading...");
   setTimeout(() => titleUpdater("Home"), 2000);
 
+  const sayHello = () => console.log("say hello");
+  const title = useClick(sayHello);
+
   return (
     <div className="App">
-      <h1>Hello</h1>
+      <h1 ref={title}>Hello</h1>
       <input placeholder="Name" {...name} />
       {content.map((section, index) => (
         <button onClick={() => changeItem(index)} key={index}>
