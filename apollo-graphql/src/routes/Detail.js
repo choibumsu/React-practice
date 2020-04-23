@@ -13,6 +13,10 @@ const GET_MOVIE = gql`
       rating
       description_intro
     }
+    suggestions(id: $id) {
+      id
+      medium_cover_image
+    }
   }
 `;
 
@@ -59,6 +63,7 @@ export default () => {
   const { loading, data } = useQuery(GET_MOVIE, {
     variables: { id: parseInt(id) },
   });
+  console.log(data);
   return (
     <Container>
       <Column>
@@ -69,6 +74,9 @@ export default () => {
         <Description>{data?.movie?.description_intro}</Description>
       </Column>
       <Poster bg={data?.movie?.medium_cover_image}></Poster>
+      {data?.suggestions?.map((movie) => (
+        <div>{movie.id}</div>
+      ))}
     </Container>
   );
 };
