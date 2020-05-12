@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+
 import React from "react";
 import styled from "styled-components";
 
@@ -24,27 +25,30 @@ const Item = styled.li`
   width: 80px;
   height: 50px;
   text-align: center;
+  border-bottom: 3px solid
+    ${(props) => (props.current ? "#3496db" : "transparent")};
+  transition: border-bottom 0.5s ease-in-out;
 `;
 
 const SLink = styled(Link)`
   height: 50px;
   display: flex;
   align-items: center;
-  justify-content: centerl;
+  justify-content: center;
 `;
 
-export default () => (
+export default withRouter(({ location: { pathname } }) => (
   <Header>
     <List>
-      <Item>
+      <Item current={pathname === "/"}>
         <SLink to="/">Movies</SLink>
       </Item>
-      <Item>
+      <Item current={pathname === "/tv"}>
         <SLink to="/tv">TV</SLink>
       </Item>
-      <Item>
+      <Item current={pathname === "/search"}>
         <SLink to="/search">Search</SLink>
       </Item>
     </List>
   </Header>
-);
+));
